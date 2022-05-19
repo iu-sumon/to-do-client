@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import TaskManage from './TaskManage';
 
 const AllTask = () => {
-    const [line, setLine] = useState(false);
+
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
@@ -13,7 +14,7 @@ const AllTask = () => {
     }, [])
 
 
-    const handleDeleteProduct = id => {
+    const handleDeleteTask = id => {
 
         const proceed = window.confirm('Are you sure?')
 
@@ -43,8 +44,9 @@ const AllTask = () => {
 
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>No</th>
                             <th>Task Name</th>
+                            <th>Description</th>
                             <th>Task Complete</th>
                             <th>Action</th>
 
@@ -53,16 +55,13 @@ const AllTask = () => {
 
                     <tbody>
                         {
-                            tasks.map((t, index) => <tr>
+                            tasks.map((t, index) => <TaskManage
+                                t={t}
+                                index={index}
+                                handleDeleteTask={handleDeleteTask}
 
-                                <th>{index + 1}</th>
-                                <td className={line && 'line-through'}>{t.taskName}</td>
 
-                                <td><button onClick={() => setLine(!line)} class="btn btn-xs">Complete</button></td>
-                                
-                                <td><button onClick={() => handleDeleteProduct(t._id)} class="btn btn-error btn-xs">Delete</button></td>
-
-                            </tr>)
+                            ></TaskManage>)
                         }
 
 

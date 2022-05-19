@@ -18,9 +18,12 @@ const AddTask = () => {
             },
             body: JSON.stringify(addTask)
         })
-            .then(res => res.json())
+            .then(res => {
+                
+                res.json()
+            })
             .then(result => {
-
+                console.log(result);
                 alert('Product Added Successfully')
                 
             })
